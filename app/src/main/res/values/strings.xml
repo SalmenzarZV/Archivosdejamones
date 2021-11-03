@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Archivos de jamones</string>
+    <string name="btAdd">Add</string>
+    <string name="btEdit">Edit</string>
+    <string name="etId">\"Id\"</string>
+    <string name="tvId">ID:</string>
+    <string name="tvNombre">Nombre:</string>
+    <string name="tvBodega">Bodega:</string>
+    <string name="tvColor">Color:</string>
+    <string name="tvOrigen">Origen:</string>
+    <string name="tvGraduacion">Graduación:</string>
+    <string name="tvFecha">Fecha:</string>
+    <string name="btDeleteEdit">Delete</string>
+</resources>
