@@ -78,7 +78,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         } catch (NullPointerException npe) {
             System.out.println("ha petao");
         }
-
+         etIdEdit.setEnabled(false);
 
 
         btEditEdit = findViewById(R.id.btEditEdit);
