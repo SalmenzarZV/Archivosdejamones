@@ -2,7 +2,6 @@ package com.ad.almenzarjimenezsergio.archivosdejamones.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -157,46 +156,4 @@ public class Vino implements Serializable, Parcelable {
         parcel.writeInt(fecha);
         parcel.writeLong(id);
     }
-
-
-/*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vino vino = (Vino) o;
-        return fecha == vino.fecha && Objects.equals(nombre, vino.nombre) && Objects.equals(bodega, vino.bodega);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nombre, bodega, fecha);
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Vino vino = (Vino) o;
-
-        if (fecha != vino.fecha) return false;
-        if (nombre != null ? !nombre.equals(vino.nombre) : vino.nombre != null) return false;
-        return bodega != null ? bodega.equals(vino.bodega) : vino.bodega == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = nombre != null ? nombre.hashCode() : 0;
-        result = 31 * result + (bodega != null ? bodega.hashCode() : 0);
-        result = 31 * result + fecha;
-        return result;
-    }
-*/
-    //equals - hashcode
-    //Java: Si dos objetos son iguales, su hashcode tiene que ser el mismo.
-    //pero si el hashcode de dos objetos es el mismo no significa que los objetos sean iguales
-    //pero si el hashcode es distinto nunca van a ser iguales
-    //o1, o2 -> if(o1.equals(o2)) true-> es un hashcode igual
 }

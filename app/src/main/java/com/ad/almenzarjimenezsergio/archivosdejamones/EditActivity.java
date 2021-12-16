@@ -1,22 +1,17 @@
 package com.ad.almenzarjimenezsergio.archivosdejamones;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.ad.almenzarjimenezsergio.archivosdejamones.data.Vino;
 import com.ad.almenzarjimenezsergio.archivosdejamones.data.util.Csv;
 import com.ad.almenzarjimenezsergio.archivosdejamones.data.util.WriteRead;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,26 +25,8 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     WriteRead writeRead = new WriteRead();
 
     private void borraVino(long id) {
-        //String salida = "";
         String file = writeRead.readFile(getFilesDir(), "Vinos.csv");
         writeRead.deleteRow(getFilesDir(), Long.toString(id), "Vinos.csv");
-        //writeRead.deleteFile(getFilesDir(), "Vinos.csv");
-        /*
-        String[] lineas = file.split("\n");
-
-        for(String linea : lineas){
-            String[] campos = linea.split(";");
-            if (linea.length() != 0) {
-                long fetchedId = Long.parseLong(campos[0]);
-                if (fetchedId != id) {
-                    salida += Csv.getCsv(campos)+"\n";
-                }
-            }
-        }
-
-         */
-
-        //writeRead.writeFile(getFilesDir(), "Vinos.csv", salida);
     }
 
 
@@ -119,9 +96,16 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (view.equals(btDeleteEdit)){
-            borraVino(vino.getId());
-            Toast.makeText(this, "Vino borrado", Toast.LENGTH_SHORT).show();
-            finish();
+            AlertDialog.Builder builder  = new AlertDialog.Builder(this);
+            builder.setTitle("Are you sure?")
+                    .setMessage("Are you sure do you want to delete this character?")
+                    .setNegativeButton(android.R.string.no, (dialog, which) -> {})
+                    .setPositiveButton( android.R.string.ok, (dialog, which) -> {
+                        borraVino(vino.getId());
+                        Toast.makeText(this, "Vino borrado", Toast.LENGTH_SHORT).show();
+                        finish();
+                    });
+            builder.create().show();
         }
     }
 

@@ -1,9 +1,7 @@
 package com.ad.almenzarjimenezsergio.archivosdejamones;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,14 +12,10 @@ import com.ad.almenzarjimenezsergio.archivosdejamones.data.Vino;
 import com.ad.almenzarjimenezsergio.archivosdejamones.data.util.Csv;
 import com.ad.almenzarjimenezsergio.archivosdejamones.data.util.WriteRead;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class AddActivity extends AppCompatActivity {
+
     TextView tvIdAdd, tvNombreAdd, tvBodegaAdd, tvColorAdd, tvOrigenAdd, tvGraduacionAdd, tvFechaAdd;
     EditText etIdAdd, etNombreAdd, etBodegaAdd, etColorAdd, etOrigenAdd, etGraduacionAdd, etFechaAdd;
     Button btAddAdd;
@@ -79,7 +73,7 @@ public class AddActivity extends AppCompatActivity {
         return bueno;
     }
 
-    private boolean EmptyFields() {
+    private boolean emptyFields() {
         int cont = 0;
 
         if (etIdAdd.getText().length() > 0){
@@ -146,7 +140,7 @@ public class AddActivity extends AppCompatActivity {
 
 
         btAddAdd.setOnClickListener(view -> {
-            if (EmptyFields()){
+            if (emptyFields()){
                 Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_LONG).show();
             } else if(!camposBuenos()){
                 Toast.makeText(this, "Rellene los campos correctamente", Toast.LENGTH_LONG).show();

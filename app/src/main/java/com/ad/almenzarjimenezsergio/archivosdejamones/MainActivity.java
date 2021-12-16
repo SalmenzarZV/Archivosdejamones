@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setTvVinos(writeRead.readFile(getFilesDir(), fileName));
             vinos = putArrayList();
             Log.v("jamaica", vinos.toString());
-        } catch (NullPointerException npe) {
+        } catch (Exception e) {
             //writeRead.writeFile(getFilesDir(), fileName, "");
             vinos = new ArrayList<>();
             System.out.println("vinos not setted");
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ArrayList<Vino> vinos = new ArrayList<>();
         for (String s : linea) {
             String[] datosVino = s.split(";");
-            vino = new Vino(Long.parseLong(datosVino[0].trim()), datosVino[1], datosVino[2], datosVino[3], datosVino[4], Double.parseDouble(datosVino[5].trim()), Integer.parseInt(datosVino[6].trim()));
+            vino = new Vino(Long.parseLong(datosVino[0].trim()), datosVino[1].trim(), datosVino[2].trim(), datosVino[3].trim(), datosVino[4].trim(), Double.parseDouble(datosVino[5].trim()), Integer.parseInt(datosVino[6].trim()));
             vinos.add(vino);
         }
         return vinos;
@@ -105,13 +105,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (String s : linea) {
             String[] datosVino = s.split(";");
 
-            strVinos += "Id:" + datosVino[0]
-                    + "\tNombre: " + datosVino[1]
-                    + "\tBodega: " + datosVino[2]
-                    + "\tColor: " + datosVino[3]
-                    + "\tOrigen: " + datosVino[4]
-                    + "\tGraduación: " + datosVino[5]
-                    + "\tFecha: " + datosVino[6]
+            strVinos += "Id: " + datosVino[0]
+                    + "  Nombre: " + datosVino[1]
+                    + "  Bodega: " + datosVino[2]
+                    + "  Color: " + datosVino[3]
+                    + "  Origen: " + datosVino[4]
+                    + "  Graduación: " + datosVino[5]
+                    + "  Fecha: " + datosVino[6]
                     + "\n\n";
         }
 
@@ -138,14 +138,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     Vino vino = getVinoById(id);
                     if (vino != null){
-                       // System.out.println("vino no nulo");
                         Intent intentEdit = new Intent(this, EditActivity.class);
                         Bundle bundleEdit = new Bundle();
                         bundleEdit.putParcelable("vino", vino);
                         bundleEdit.putParcelableArrayList("vinos", vinos);
-                       // System.out.println(bundleEdit.getParcelable("vino").toString());
                         intentEdit.putExtras(bundleEdit);
-                        //System.out.println(intentEdit.getExtras().getParcelable("vino").toString());
                         startActivity(intentEdit);
 
                     }
@@ -167,23 +164,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+
         etId.setText("");
         try {
             setTvVinos(writeRead.readFile(getFilesDir(), fileName));
             vinos = putArrayList();
             Log.v("jamaica", vinos.toString());
-        } catch (NullPointerException npe) {
+        } catch (Exception e) {
             //writeRead.writeFile(getFilesDir(), fileName, "");
             vinos = new ArrayList<>();
             System.out.println("vinos not setted");
         }
     }
 
-    /*Vino v =  new Vino("Betis", "manque pierda", "Verde", "Benito Villamarín", 12.5, 2015);
-        String csv = Csv.getCsv(v);
-        Log.v(TAG, csv);
-
-        Vino v2 = Csv.getVino(csv);
-        Log.v(TAG, v2.toString());*/
 
 }
